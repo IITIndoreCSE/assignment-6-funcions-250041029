@@ -4,16 +4,32 @@
 using namespace std;
 
 int secondLargest(const vector<int>& arr) {
-    // TODO: complete the function as per instructions
+    int first = INT_MIN, second = INT_MIN;
 
+    for (int num : arr) {
+        if (num > first) {
+            second = first;
+            first = num;
+        } else if (num > second && num < first) {
+            second = num;
+        }
+    }
+
+    // If there is no second largest (all elements equal)
+    if (second == INT_MIN) {
+        return -1;  // or handle as needed
+    }
+
+    return second;
 }
 
 int main() {
-    int n; cin >> n;
+    int n;
+    cin >> n;
     vector<int> arr(n);
-    for(int i=0; i<n; i++) cin >> arr[i];
+    for (int i = 0; i < n; i++) cin >> arr[i];
 
     cout << secondLargest(arr) << "\n";
     return 0;
 }
-
+	
