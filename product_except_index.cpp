@@ -6,20 +6,34 @@ vector<long long> productExceptIndex(const vector<int>& arr) {
     int size = arr.size();
     vector<long long> output(size, 1);
 
-    // TODO: complete the function as per instructions
-    
+    // Left product
+    long long leftProd = 1;
+    for (int i = 0; i < size; i++) {
+        output[i] = leftProd;
+        leftProd *= arr[i];
+    }
+
+    // Right product
+    long long rightProd = 1;
+    for (int i = size - 1; i >= 0; i--) {
+        output[i] *= rightProd;
+        rightProd *= arr[i];
+    }
+
+    return output;
 }
 
 int main() {
-    int n; cin >> n;
+    int n; 
+    cin >> n;
     vector<int> arr(n);
-    for (int i=0; i<n; i++) cin >> arr[i];
+    for (int i = 0; i < n; i++) cin >> arr[i];
 
     vector<long long> res = productExceptIndex(arr);
-    for(auto v : res)
+    for (auto v : res)
         cout << v << " ";
     cout << "\n";
 
     return 0;
 }
-
+	
